@@ -29,7 +29,7 @@ cd schemas
 mkdir -p target/swagger
 ```
 
-Since the swagger-codegen.jar command line utility only accepts 1 API definition file as input, our services will need to all be defined in one file.  Currently, in the schemas repository, they are defined as [many files](https://github.com/ga4gh/schemas/tree/master/src/main/proto/ga4gh).  I've manually combined them all in to 1 file called [*all_services.proto*](https://github.com/BD2KGenomics/ga4gh-gemini/blob/master/all_service.proto).  Let's copy that file to the same location as the others:
+Since the swagger-codegen.jar command line utility only accepts 1 API definition file as input, our services will need to all be defined in one file.  Currently, in the schemas repository, they are defined as [many files](https://github.com/ga4gh/schemas/tree/master/src/main/proto/ga4gh).  I've manually combined them all in to 1 file called [*all_services.proto*](https://github.com/BD2KGenomics/ga4gh-gemini/blob/master/all_services.proto).  Let's copy that file to the same location as the others:
 
 ```
 cp path/to/all_services.proto ./src/main/proto/ga4gh
