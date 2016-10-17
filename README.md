@@ -41,19 +41,20 @@ Now we use the `protoc` utility; the output directory will be the current direct
 protoc -I./src/main/proto --swagger_out=. src/main/proto/ga4gh/all_services.proto
 # If you wanted to process more than one *.proto file, you can do
 # protoc -I./src/main/proto --swagger_out=. src/main/proto/ga4gh/*service.proto
+cd ..
 ```
 
-This should produce a directory 'ga4gh', and inside it, all_services.swagger.json ; this is the swagger API service definition file.
+This should produce a directory 'ga4gh', and inside it, all_services.swagger.json; this is the swagger API service definition file.
 
 
 Now we use the all_services.swagger.json swagger file to produce stub server code, via the `swagger-codegen.jar` utility.
 
-To support Python 2 in the output stub server, create a JSON configuration file with {"supportPython2":"True"} in it.  Pass this file to swagger-codegen-cli's 'generate' command, via the -c option; we'll call it temp.json.
+To support Python 2 in the output stub server, create a JSON configuration file with {"supportPython2":"True"} in it.  Pass this file to swagger-codegen-cli's 'generate' command, via the --config option; we'll call it temp.json.
 
 ```
 java -jar swagger-codegen.jar generate\
-  -i schemas/target/swagger/ga4gh/all_services.swagger.json\
-  -l python-flask -o server -c temp.json
+  --input-spec schemas/target/swagger/ga4gh/all_services.swagger.json\
+  --lang python-flask --output server --config temp.json
 ```
 
 The folder "server" should then be a Python flask-based stub server that one needs to modify.  It needs to be made so that the server implements the GA4GH interface, and calls the Gemini database in the background.
