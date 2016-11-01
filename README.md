@@ -82,3 +82,12 @@ python server/app.py
 ```
 
 Navigate to http://localhost:8080/ui/ and you'll see your documentation for your api.
+
+
+## Conclusion, References
+
+- Most of the instructions found here were derived from https://github.com/ga4gh/schemas/blob/master/doc/source/appendix/swagger.rst
+
+- There are parts of these instructions that are very manual, but nonetheless necessary.  For example, the only reason why we have to deal with that `all_services.proto` file is because I don't understand how to use the `$ref` keyword of the [Swagger specification](http://swagger.io/specification/); if someone knows how to use that to, say, make 1 new file that references the other ones, this step wouldn't be needed.
+
+- As another example, the reason why we have to rename the Python modules from `this_service_controller.py` to `ThisService_controller.py` is because there's some step in the pipeline of using the tools (`protoc` or `swagger-codegen.jar`) that produces the files in a particular way, and I don't currently know how to customize/configure them to output in other ways.
